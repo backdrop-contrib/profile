@@ -94,34 +94,27 @@ function profile_uninstall() {
  *
  * This is here to deal with an update numbering problem in early versions of
  * this module (updates started numbering at 10000, not 1000). If the wrong
- * number is detected in the system table, we flag it on the status page and
- * then fix it so that updates will proceed properly going forward.
+ * number is detected for the last update version, we fix it so that updates
+ * proceed properly going forward.
  */
 function profile_requirements($phase) {
-  if ($phase = 'runtime') {
-    $schema_version = db_query("
-      SELECT schema_version
-      FROM {system}
-      WHERE name = 'profile'
-      ")
-      ->fetchField();
-    if ($schema_version == 10000) {
-      db_query("
-        UPDATE {system}
-        SET schema_version = 1000
-        WHERE name = 'profile'
-        ");
-      return array(
-        'profile' => array(
-          'title' => t('Profile update numbering'),
-          'description' => t('A problem was detected with the update numbering for the Profile module. The problem has been fixed. Please re-run !link.',
-            array('!link' => l('update.php', '/update.php'))),
-          'severity' => REQUIREMENT_ERROR,
-        ),
-      );
-    }
+  if (backdrop_get_installed_schema_version('profile') == 10000) {
+    backdrop_set_installed_schema_version('profile', 1000);
   }
-  return array();
+}
+
+
+/**
+ * Implements hook_update_dependencies().
+ *
+ * Make sure field module has already created the config files before running
+ * update 1001.
+ * @see field_update_1001().
+ */
+function profile_update_dependencies() {
+  $dependencies['profile'][1001] = array(
+      'field' => 1001,
+    );
 }
 
 
@@ -130,20 +123,6 @@ function profile_requirements($phase) {
  */
 function profile_update_1000() {
   config_set('profile.settings', 'profile_display', 'fieldsets');
-}
-
-
-/**
- * Implements hook_update_dependencies().
- *
- * Make sure field module has already created the config files before running
- * the next update.
- * @see field_update_1001().
- */
-function profile_update_dependencies() {
-  $dependencies['profile'][1001] = array(
-      'field' => 1001,
-    );
 }
 
 
