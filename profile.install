@@ -165,7 +165,7 @@ function profile_update_1001() {
       'weight' => $type['weight'],
       'status' => $type['status'],
       'module' => $type['module'],
-      'storage' => PROFILE_STORAGE_NORMAL,
+      'storage' => 1,
     );
     $config->setData($config_data);
     $config->save();
