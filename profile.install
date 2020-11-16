@@ -98,9 +98,12 @@ function profile_uninstall() {
  * proceed properly going forward.
  */
 function profile_requirements($phase) {
-  if (backdrop_get_installed_schema_version('profile') == 10000) {
-    backdrop_set_installed_schema_version('profile', 1000);
+  if ($phase == 'update' || $phase == 'runtime') {
+    if (backdrop_get_installed_schema_version('profile') == 10000) {
+      backdrop_set_installed_schema_version('profile', 1000);
+    }
   }
+  return array();
 }
 
 
@@ -109,6 +112,7 @@ function profile_requirements($phase) {
  *
  * Make sure field module has already created the config files before running
  * update 1001.
+ *
  * @see field_update_1001().
  */
 function profile_update_dependencies() {
