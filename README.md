@@ -37,12 +37,12 @@ Backdrop after you upgrade.
 Documentation
 -------------
 
-Additional documentation is located in the [Wiki](https://github.com/backdrop-contrib/me/wiki/Documentation).
+Additional documentation is located in the [Wiki](https://github.com/backdrop-contrib/profile/wiki/Documentation).
 
 Issues
 ------
 
-Bugs and feature requests should be reported in the [Issue Queue](https://github.com/backdrop-contrib/me/issues).
+Bugs and feature requests should be reported in the [Issue Queue](https://github.com/backdrop-contrib/profile/issues).
 
 License
 ---------------
@@ -54,7 +54,7 @@ for complete text.
 Current Maintainers
 -------------------
 
-* [docwilmot](https://github.com/docwilmot)
+* [Robert J. Lang](https://github.com/bugfolder)
 
 Credits:
 ----------
