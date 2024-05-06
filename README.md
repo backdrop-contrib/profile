@@ -1,7 +1,7 @@
 Profile
 ========
 
-Supports configurable user profiles.
+This module supports configurable user profiles and profile types.
 
 This module is the successor to the [Drupal 7 Profile2 module](https://drupal.org/project/profile2).
 
