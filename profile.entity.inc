@@ -148,6 +148,7 @@ class Profile extends Entity {
     $build += array(
       '#theme' => 'profile',
       '#profile' => $this,
+      '#entity' => $this,
       '#view_mode' => $view_mode,
       '#langcode' => $langcode,
     );
