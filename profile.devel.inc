@@ -56,7 +56,7 @@ function profile_generate_form($form, &$form_state) {
 function profile_generate_form_submit($form, &$form_state) {
   $user_ids = array();
   if ($form_state['values']['profile_roles_select'] == '[any]') {
-    // generate profile for all user.
+    // generate profile for all users.
     $users = user_load_multiple(FALSE);
     //don't generate profile for anonymous user (uid = 0).
     unset($users[0]);
@@ -66,10 +66,7 @@ function profile_generate_form_submit($form, &$form_state) {
     $role = $form_state['values']['profile_roles_select'];
     $query = db_select('users', 'u')->fields('u', array('uid'));
     $query->condition('u.uid', 0, '<>');
-    // $users_roles_alias = $query->join('users_roles', 'ur', '%alias.uid = u.uid');
-    // $query->condition($users_roles_alias . '.rid', $role);
-
-    $users = $query->execute()->fetchCol('uid');
+    $users = $query->execute()->fetchCol();
     $users = user_load_multiple($users);
     foreach ($users as $user) {
       if (in_array($role, $user->roles)) {
