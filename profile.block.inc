@@ -29,7 +29,7 @@ class ProfileBlock extends Block {
   /**
    * Returns the rendered content of this block.
    *
-   * @return string
+   * @return array | null
    */
   function getContent() {
     $type = $this->childDelta;
