@@ -53,6 +53,7 @@ class ProfileBlock extends Block {
    * {@inheritdoc}
    */
   function getChildren() {
+    $blocks = [];
     foreach (profile_get_types() as $type => $profile_type) {
       $blocks[$type] = array(
         'info' => t('Profile !label block', array('!label' => $profile_type->label)),
